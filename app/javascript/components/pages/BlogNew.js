@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
+
 export class BlogNew extends Component {
   constructor(props) {
     super(props);

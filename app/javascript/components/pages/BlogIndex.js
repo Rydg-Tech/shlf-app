@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Card, CardTitle, Col, Button } from "reactstrap";
+import "./BlogIndex.css";
 
 export class BlogIndex extends Component {
   render() {
     return (
       <>
+      <div id="Shlf-bg">
         <Col sm="6">
           {this.props.blogs.map((blog) => {
             return (
@@ -28,6 +30,7 @@ export class BlogIndex extends Component {
             Add your comment
           </a>
         </Button>
+        </div>
       </>
     );
   }
