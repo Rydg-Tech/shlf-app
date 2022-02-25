@@ -13,8 +13,7 @@ import BlogEdit from "./pages/BlogEdit";
 import Contacts from "./components/Contacts";
 import Recipe from "./pages/Recipe";
 import "./App.css";
-import { readBlog } from "../api"
-import { ListGroup } from "reactstrap";
+import { readBlog } from "../api";
 import { API_URL } from "../constant";
 
 export class App extends Component {
@@ -22,12 +21,12 @@ export class App extends Component {
     super(props);
     this.state = {
       shlves: [],
-      blogs: [],  
-    };  
+      blogs: [],
+    };
   }
 
   componentDidMount() {
-    readBlog().then((blogsArray) => this.setState({ blogs: blogsArray }))
+    readBlog().then((blogsArray) => this.setState({ blogs: blogsArray }));
     this.readShlf();
   }
 
@@ -108,9 +107,10 @@ export class App extends Component {
               render={(props) => {
                 let id = props.match.params.id;
                 let shlf = this.state.shlves.find((shlf) => shlf.id === +id);
-                 return <ShlfShow shlf={shlf} blogs={this.state.blogs} id={+id}/>;
+                return (
+                  <ShlfShow shlf={shlf} blogs={this.state.blogs} id={+id} />
+                );
               }}
-              
             />
             <Route
               path="/blogindex"

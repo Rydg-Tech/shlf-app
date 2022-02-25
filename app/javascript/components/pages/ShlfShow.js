@@ -19,8 +19,8 @@ export class ShlfShow extends Component {
   }
   render() {
     const { shlf } = this.props;
-    console.log(this.props)
-    console.log(this.state)
+    console.log(this.props);
+    console.log(this.state);
 
     return (
       <>
