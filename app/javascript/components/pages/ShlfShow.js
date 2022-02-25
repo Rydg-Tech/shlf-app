@@ -1,22 +1,36 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Card, CardTitle, Col } from "reactstrap";
+import { readBlog } from "../../api";
 
 export class ShlfShow extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      blogs: [],
+    };
+  }
+
+  componentDidMount() {
+    readBlog().then((blogsArray) => {
+      let blog = blogsArray.filter((blog) => blog.shlf_id === this.props.id);
+      this.setState({ blogs: blog });
+    });
   }
   render() {
     const { shlf } = this.props;
+    console.log(this.props)
+    console.log(this.state)
+
     return (
       <>
         <h2>ShlfShow.js page</h2>
         <br />
+
         <Col sm="6">
           <Card body>
-            <CardTitle>{this.props.shlf.name}</CardTitle>
-            <img src={this.props.shlf.image} alt="" />
+            <CardTitle>{shlf?.name}</CardTitle>
+            <img src={shlf?.image} alt="" />
             <a
               href="https://food.unl.edu/free-resource/food-storage#fruit"
               target="_blank"

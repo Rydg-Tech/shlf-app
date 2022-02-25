@@ -94,3 +94,7 @@ bin/webpack-dev-server
 
 02/23/2022
 Update functionality
+
+02/25/2022
+Yarn run jest coverage
+gem simplecov

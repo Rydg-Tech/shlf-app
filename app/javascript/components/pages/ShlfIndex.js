@@ -7,7 +7,7 @@ export class ShlfIndex extends Component {
     return (
       <>
         <br />
-        <Col sm="6">
+        <Col sm="6" id="shlf-container">
           {this.props.shlves.map((shlf) => {
             return (
               <Card body key={shlf.id}>
