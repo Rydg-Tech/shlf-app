@@ -14,6 +14,9 @@ import Contacts from "./components/Contacts";
 import Recipe from "./pages/Recipe";
 import "./App.css";
 import { readBlog } from "../api";
+import { createBlog } from "../api/create";
+import { updateBlog } from "../api/update";
+import { deleteBlog } from "../api/delete";
 import { API_URL } from "../constant";
 
 export class App extends Component {
@@ -37,8 +40,8 @@ export class App extends Component {
       .catch((errors) => console.log("Shlf read errors:", errors));
   }
 
-  createBlog = (newBlog) => {
-    fetch("http://localhost:3000/blogs", {
+  createBlog(newBlog) {
+   fetch(`${API_URL}/blogs`, {
       body: JSON.stringify(newBlog),
       headers: {
         "Content-Type": "application/json",
@@ -46,12 +49,19 @@ export class App extends Component {
       method: "POST",
     })
       .then((response) => response.json())
-      .then(() => readBlog())
+      .then((createBlog) => {
+        let blogs = this.state.blogs
+        let newBlogs = {...blogs, createBlog}
+        this.setState({blogs:newBlogs})
+      })
+      .then(() => {
+        return readBlog()
+      })
       .catch((errors) => console.log("Blog create errors:", errors));
-  };
+  }
 
-  updateBlog = (blog, id) => {
-    fetch(`http://localhost:3000/blogs/${id}`, {
+  updateBlog(blog, id) {
+    fetch(`${API_URL}/blogs/${id}`, {
       body: JSON.stringify(blog),
       headers: {
         "Content-Type": "application/json",
@@ -59,21 +69,21 @@ export class App extends Component {
       method: "PATCH",
     })
       .then((response) => response.json())
-      .then(() => readBlog())
       .catch((errors) => console.log("Blog update errors: ", errors));
-  };
+  }
 
-  deleteBlog = (id) => {
-    fetch(`http://localhost:3000/blogs/${id}`, {
+  deleteBlog(id) {
+    fetch(`${API_URL}/blogs/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
       method: "DELETE",
-    }).then((response) => response.json().then((payload) => readBlog()));
-  };
+    })
+    .then((response) => response.json()
+    .then((payload) => readBlog()));
+  }
 
   render() {
-    console.log(readBlog());
     const {
       logged_in,
       current_user,
@@ -130,7 +140,7 @@ export class App extends Component {
                 return (
                   <BlogShow
                     blog={blog}
-                    deleteBlog={this.deleteBlog}
+                    deleteBlog={deleteBlog}
                     current_user={current_user}
                   />
                 );
@@ -140,7 +150,7 @@ export class App extends Component {
               path="/blognew"
               render={(props) => (
                 <BlogNew
-                  createBlog={this.createBlog}
+                  createBlog={createBlog}
                   current_user={current_user}
                   readBlog={readBlog}
                 />
@@ -154,7 +164,7 @@ export class App extends Component {
                 let blog = this.state.blogs.find((blog) => blog.id === +id);
                 return (
                   <BlogEdit
-                    updateBlog={this.updateBlog}
+                    updateBlog={updateBlog}
                     blog={blog}
                     current_user={current_user}
                     shlf_id={this.state.shlves.id}

@@ -14,22 +14,17 @@ export class BlogIndex extends Component {
                   <div>
                     <NavLink to={`/blogshow/${blog.id}`} key={blog.id}>
                       <h5>Title: {blog.name}</h5>
-                      <p>Comment: {blog.comment}</p>    
-                      <p>catagory: {this.props.shlves.name}</p>  
-                      <p>posted by: 🍊 {this.props.current_user.email}</p>       
-                    </NavLink>      
-                  </div>      
-                            
+                      <p>Comment: {blog.comment}</p>
+                      <p>catagory: {this.props.shlves.name}</p>
+                      <p>posted by: 🍊 {this.props.current_user.email}</p>
+                    </NavLink>
+                  </div>
                 </CardTitle>
               </Card>
-              
             );
           })}
-          
-          
         </Col>
-        
-        
+
         <br />
         <Button>
           <a href="http://localhost:3000/blognew" style={{ color: "#fff" }}>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import { Card, CardTitle, Col } from "reactstrap";
 import { readBlog } from "../../api";
 
@@ -17,11 +16,9 @@ export class ShlfShow extends Component {
       this.setState({ blogs: blog });
     });
   }
+
   render() {
     const { shlf } = this.props;
-    console.log(this.props);
-    console.log(this.state);
-
     return (
       <>
         <h2>ShlfShow.js page</h2>
@@ -29,8 +26,8 @@ export class ShlfShow extends Component {
 
         <Col sm="6">
           <Card body>
-            <CardTitle>{shlf?.name}</CardTitle>
-            <img src={shlf?.image} alt="" />
+            <CardTitle>{shlf.name}</CardTitle>
+            <img src={shlf.image} alt="" />
             <a
               href="https://food.unl.edu/free-resource/food-storage#fruit"
               target="_blank"
@@ -43,6 +40,7 @@ export class ShlfShow extends Component {
               Refrigerator Temperature : {this.props.shlf.refrigerator_temp}
             </p>
             <p>Freezer Temperature : {this.props.shlf.freezer_temp}</p>
+            
           </Card>
         </Col>
       </>
