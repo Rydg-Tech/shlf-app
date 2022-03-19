@@ -15,9 +15,9 @@ Meet the team "RYDG"
 02/17/2022
 # Create an app - React on Rails
 ### Step
-> $ rails new apartment-app -d postgresql -T
+> $ rails new shlf-app -d postgresql -T
 
-> $ cd apartment-app
+> $ cd shlf-app
 
 > $ rails db:create
 
